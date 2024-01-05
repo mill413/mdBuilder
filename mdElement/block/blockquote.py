@@ -16,3 +16,5 @@ class Blockquote(BlockElement):
 
         return "\n".join([f"> {p}".strip() for p in list(quote_list)])
     
+    def __repr__(self) -> str:
+        return super().__repr__(content=self.content)
