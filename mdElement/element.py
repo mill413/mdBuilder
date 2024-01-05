@@ -3,21 +3,41 @@ from typing import Self
 
 
 class MdElement(metaclass=ABCMeta):
-
+    """markdown element abstract class"""
     @abstractmethod
     def md_str(self) -> str:
+        """return element's markdown string
+
+        Implemented by children class.
+
+        Return:
+            a string, which is a markdown string of this element.
+        """
         pass
 
-    def __repr__(self, show_more=False, **info: dict) -> str:
-        base_info = {
+    def __repr__(self, show_more=True, **info: dict) -> str:
+        base_info: dict = {
             "name": self.__class__.__name__,
             "markdown": self.md_str()
         }
-        return str(base_info.update(info) if show_more else base_info)
+        if show_more:
+            base_info.update(info)
+        return str(base_info)
 
 
 class InlineElement(MdElement, metaclass=ABCMeta):
+    """inline element abstract class
+
+    The element which can be nested in text.
+
+    Include elements of Code, Emphasis(Bold, Italic, BoldItalic), Strikethrough.
+
+    Attributes:
+        content: simple text string
+        symbol: the symbol of this element, such as *, **, ~~ etc.
+    """
     def __init__(self, content: str, symbol: str) -> None:
+        """init InlineElement with content and symbol"""
         super().__init__()
         self.content = content
         self.symbol = symbol
@@ -27,17 +47,34 @@ class InlineElement(MdElement, metaclass=ABCMeta):
 
 
 class BlockElement(MdElement, metaclass=ABCMeta):
+    """block element abstract class
+
+    The element which may have many lines and other elements.
+
+    Include elements of Heading, Table etc.
+
+    Attributes:
+        content: a list of elements
+    """
     def __init__(self, *content: tuple[MdElement, str]) -> None:
+        """init BlockElement with content"""
         super().__init__()
-        self.content = [Text(str) if isinstance(
-            element, str) else element for element in content]
+        self.content = ElementList(content)
 
     def md_str(self) -> str:
         return "\n".join(self.content)
 
 
 class Text(MdElement):
+    """str wrapper
+    
+    Wrap string to a markdown element.
+
+    Attributes:
+        content: a string of text
+    """
     def __init__(self, text: str) -> None:
+        """init Text with text"""
         super().__init__()
         self.content = text
 
