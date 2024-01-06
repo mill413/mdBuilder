@@ -55,3 +55,6 @@ class Table(BlockElement):
 
     def replace_pipes(self, str_list: list[str]) -> list[str]:
         return [str.replace("|", "&#124;") for str in str_list]
+
+    def __repr__(self) -> str:
+        return super().__repr__(headers=self.headers, contents=self.contents, alignments=self.alignments)
