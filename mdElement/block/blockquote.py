@@ -1,4 +1,5 @@
-from ..element import MdElement,BlockElement, ElementList
+from ..element import MdElement, BlockElement, ElementList
+
 
 class Blockquote(BlockElement):
     def __init__(self, *quote: tuple[MdElement, str]) -> None:
@@ -12,9 +13,8 @@ class Blockquote(BlockElement):
             quote_list.append(block)
             if ind != (len(self.content.elements)-1):
                 quote_list.append("")
-            
 
         return "\n".join([f"> {p}".strip() for p in list(quote_list)])
-    
+
     def __repr__(self) -> str:
         return super().__repr__(content=self.content)

@@ -1,4 +1,5 @@
-from ..element import BlockElement,InlineElement,ElementList
+from ..element import BlockElement, InlineElement, ElementList
+
 
 class Heading(BlockElement):
     def __init__(self, level: int, *head: tuple[InlineElement, str]) -> None:

@@ -1,5 +1,4 @@
-from mdElement.element import MdElement
-from ..element import BlockElement, InlineElement, ElementList
+from ..element import BlockElement
 
 
 class FencedCodeBlock(BlockElement):

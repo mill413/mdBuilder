@@ -1,7 +1,7 @@
-from enum import Enum, auto
+from enum import Enum
 
 from ..block.link import Link
-from ..element import BlockElement, ElementList, Text
+from ..element import BlockElement, ElementList
 from ..inline.code import Code
 from ..inline.emphasis import Bold, BoldItalic, Italic
 
@@ -23,7 +23,7 @@ class Table(BlockElement):
         self.headers = ElementList(tuple(header))
         self.contents = [ElementList(row) for row in content]
         self.alignments = alignment
-        
+
         self.fill_none_items()
 
     def md_str(self) -> str:
