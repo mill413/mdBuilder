@@ -1,12 +1,12 @@
 from ..element import BlockElement, InlineElement, ElementList, Text
 from ..inline.emphasis import Bold, Italic, BoldItalic
-
+from .image import Image
 
 class Link(BlockElement):
-    def __init__(self, url: str, text: str | Bold | Italic | BoldItalic = "",  title: str = "") -> None:
+    def __init__(self, url: str, text_or_image: str | Bold | Italic | BoldItalic|Image = "",  title: str = "") -> None:
         super().__init__()
         self.url = url
-        self.text = Text(text) if isinstance(text, str) else text
+        self.text = Text(text_or_image) if isinstance(text_or_image, str) else text_or_image
         self.title = title
 
     def md_str(self) -> str:
