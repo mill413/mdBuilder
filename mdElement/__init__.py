@@ -6,6 +6,7 @@ from .block.image import Image
 from .block.link import Link
 from .block.list import List
 from .block.paragraph import Paragraph
+from .block.table import Alignment, Table
 from .element import BlockElement, InlineElement, MdElement
 from .inline.code import Code
 from .inline.emphasis import Bold, BoldItalic, Italic
