@@ -2,7 +2,7 @@ from ..element import BlockElement, InlineElement, ElementList
 
 class Paragraph(BlockElement):
     def __init__(self, *content: tuple[InlineElement, str]) -> None:
-        super().__init__(*content)
+        super().__init__()
 
         self.content = ElementList(content)
 

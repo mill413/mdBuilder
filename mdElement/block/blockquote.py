@@ -2,7 +2,7 @@ from ..element import MdElement,BlockElement, ElementList
 
 class Blockquote(BlockElement):
     def __init__(self, *quote: tuple[MdElement, str]) -> None:
-        super().__init__(*quote)
+        super().__init__()
 
         self.content = ElementList(quote)
 

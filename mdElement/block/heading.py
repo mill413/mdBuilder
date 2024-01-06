@@ -2,7 +2,7 @@ from ..element import BlockElement,InlineElement,ElementList
 
 class Heading(BlockElement):
     def __init__(self, level: int, *head: tuple[InlineElement, str]) -> None:
-        super().__init__(head)
+        super().__init__()
 
         self.head = ElementList(head)
         self.level = level
