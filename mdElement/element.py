@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
-from typing import Self
+from collections.abc import Iterable
+from typing import Any, Self
 
 
 class MdElement(metaclass=ABCMeta):
@@ -36,6 +37,7 @@ class InlineElement(MdElement, metaclass=ABCMeta):
         content: simple text string
         symbol: the symbol of this element, such as *, **, ~~ etc.
     """
+
     def __init__(self, content: str, symbol: str) -> None:
         """init InlineElement with content and symbol"""
         super().__init__()
@@ -56,33 +58,35 @@ class BlockElement(MdElement, metaclass=ABCMeta):
     Attributes:
         content: a list of elements
     """
-    def __init__(self, *content: tuple[MdElement, str]) -> None:
+
+    def __init__(self) -> None:
         """init BlockElement with content"""
         super().__init__()
-        self.content = ElementList(content)
 
+    @abstractmethod
     def md_str(self) -> str:
-        return "\n".join(self.content)
+        pass
 
 
 class Text(MdElement):
     """str wrapper
-    
+
     Wrap string to a markdown element.
 
     Attributes:
-        content: a string of text
+        text: a string of text
     """
+
     def __init__(self, text: str) -> None:
         """init Text with text"""
         super().__init__()
-        self.content = text
+        self.text = text
 
     def md_str(self) -> str:
-        return self.content
+        return self.text
 
 
-class ElementList:
+class ElementList(list):
     def __init__(self, elements: tuple[MdElement, str, Self]) -> None:
         self.elements: list[MdElement] = [
             Text(e) if isinstance(e, str) else e for e in elements]
@@ -92,3 +96,11 @@ class ElementList:
 
     def __repr__(self) -> str:
         return self.__class__.__name__+str([e.__repr__() for e in self.elements])
+
+    def __len__(self) -> int:
+        return len(self.elements)
+
+    def extend(self, __iterable: Iterable) -> None:
+        iterable = [Text(str(item)) if not isinstance(
+            item, MdElement) else item for item in __iterable]
+        return self.elements.extend(iterable)
