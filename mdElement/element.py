@@ -54,9 +54,6 @@ class BlockElement(MdElement, metaclass=ABCMeta):
     The element which may have many lines and other elements.
 
     Include elements of Heading, Table etc.
-
-    Attributes:
-        content: a list of elements
     """
 
     def __init__(self) -> None:
