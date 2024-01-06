@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
-from collections.abc import Iterable
-from typing import Any, Self
+from collections.abc import Iterable, Iterator
+from typing import Self
 
 
 class MdElement(metaclass=ABCMeta):
@@ -16,7 +16,7 @@ class MdElement(metaclass=ABCMeta):
         """
         pass
 
-    def __repr__(self, show_more=True, **info: dict) -> str:
+    def __repr__(self, show_more=False, **info: dict) -> str:
         base_info: dict = {
             "name": self.__class__.__name__,
             "markdown": self.md_str()
@@ -101,3 +101,6 @@ class ElementList(list):
         iterable = [Text(str(item)) if not isinstance(
             item, MdElement) else item for item in __iterable]
         return self.elements.extend(iterable)
+
+    def __iter__(self) -> Iterator:
+        return self.elements.__iter__()
