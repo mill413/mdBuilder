@@ -84,7 +84,7 @@ class Text(MdElement):
 
 
 class ElementList(list):
-    def __init__(self, elements: tuple[MdElement, str, Self]) -> None:
+    def __init__(self, elements: tuple[MdElement, str]) -> None:
         self.elements: list[MdElement] = [
             Text(e) if isinstance(e, str) else e for e in elements]
 
