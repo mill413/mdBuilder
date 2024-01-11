@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from collections.abc import Iterable, Iterator
-from typing import Self
+from typing import Self, Sequence
 
 
 class MdElement(metaclass=ABCMeta):
@@ -84,12 +84,15 @@ class Text(MdElement):
 
 
 class ElementList(list):
-    def __init__(self, elements: tuple[MdElement, str]) -> None:
-        self.elements: list[MdElement] = [
-            Text(e) if isinstance(e, str) else e for e in elements]
+    def __init__(self, elements: Sequence[MdElement | str | Self]) -> None:
+        self.elements: list[MdElement | Self] = [
+            Text(e) if isinstance(e, str) else e
+            for e in elements]
 
-    def md_str_list(self) -> list[str]:
-        return [e.md_str() for e in self.elements]
+    def md_str_list(self) -> list[str | list]:
+        return [
+            e.md_str() if isinstance(e, MdElement) else e.md_str_list()
+            for e in self.elements]
 
     def __repr__(self) -> str:
         return self.__class__.__name__+str([e.__repr__() for e in self.elements])
