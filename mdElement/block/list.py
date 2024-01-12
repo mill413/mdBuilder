@@ -19,12 +19,11 @@ class List(BlockElement, metaclass=ABCMeta):
                   for i in item]
             for item in items
         ]
-        print(self.items)
         for item in self.items:
             self._check_list_(item)
 
-    def md_str(self, nest_level: int = 0) -> str:
-        return self._to_md_str_(nest_level)
+    def md_str(self, bias: str = "") -> str:
+        return self._to_md_str_(bias)
 
     def __repr__(self) -> str:
         return super().__repr__(items=self.items)
@@ -39,25 +38,28 @@ class List(BlockElement, metaclass=ABCMeta):
                     item, (Text, Paragraph, Blockquote, Image, List)), "The element must be paragraph, blockquote, image or list"
 
     @abstractmethod
-    def _to_md_str_(self, nest_level: int = 0) -> str:
+    def _to_md_str_(self, bias: str = "") -> str:
         ...
 
 
 class OrderedList(List):
-    def _to_md_str_(self, nest_level: int = 0) -> str:
+    def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | Self]], start_index: int = 0) -> None:
+        super().__init__(*items)
+        self.start: int = start_index
+
+    def _to_md_str_(self, bias: str = "") -> str:
         md_str_list = []
-        indent = "    "*nest_level
         for item_ind, item_list in enumerate(self.items):
             if len(item_list) == 1:
                 md_str_list.append(
-                    f"{indent}{item_ind}. "+item_list[0].md_str())
+                    f"{bias}{self.start + item_ind}. "+item_list[0].md_str())
             else:
                 for ind, item in enumerate(item_list):
                     item_str_list = [
-                        f"{indent}{item_ind}. "+item.md_str() if ind == 0
+                        f"{bias}{self.start + item_ind}. "+item.md_str() if ind == 0
                         else
-                        f"\n{indent}    "+item.md_str() if isinstance(item, (Text, Paragraph, Blockquote, Image))
-                        else item.md_str(nest_level=nest_level+1)
+                        f"\n{bias}    "+item.md_str() if isinstance(item, (Text, Paragraph, Blockquote, Image))
+                        else f"\n{item.md_str(bias=bias+"    ")}"
                     ]
                     md_str_list.append("\n".join(item_str_list))
 
@@ -65,19 +67,18 @@ class OrderedList(List):
 
 
 class UnorderedList(List):
-    def _to_md_str_(self, nest_level: int = 0) -> str:
+    def _to_md_str_(self, bias: str = "") -> str:
         md_str_list = []
-        indent = "  "*nest_level
         for _, item_list in enumerate(self.items):
             if len(item_list) == 1:
-                md_str_list.append(f"{indent}* "+item_list[0].md_str())
+                md_str_list.append(f"{bias}* "+item_list[0].md_str())
             else:
                 for ind, item in enumerate(item_list):
                     item_str_list = [
-                        f"{indent}* "+item.md_str() if ind == 0
+                        f"{bias}* "+item.md_str() if ind == 0
                         else
-                        f"\n{indent}    "+item.md_str() if isinstance(item, (Text, Paragraph, Blockquote, Image))
-                        else item.md_str(nest_level=nest_level+1)
+                        f"\n{bias}    "+item.md_str() if isinstance(item, (Text, Paragraph, Blockquote, Image))
+                        else f"\n{item.md_str(bias=bias+"    " if isinstance(item, OrderedList) else "  ")}"
                     ]
                     md_str_list.append("\n".join(item_str_list))
 
