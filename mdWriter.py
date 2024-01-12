@@ -1,4 +1,4 @@
-from mdElement import MdElement, InlineElement, Paragraph, Text
+from mdElement import MdElement, InlineElement, Paragraph
 from pathlib import Path
 
 
@@ -11,8 +11,6 @@ class MdWriter:
 
     def write_to_file(self, file: str | Path, mode="w"):
         md_file = file if isinstance(file, Path) else Path(file)
-
-        assert md_file.exists(), f"{file} doesn't exist!"
 
         content_str: str = "\n".join([f"{block.md_str()}\n" if isinstance(block, MdElement)
                                       else block+"\n"
