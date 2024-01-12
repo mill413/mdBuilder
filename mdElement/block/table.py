@@ -5,7 +5,7 @@ from ..element import BlockElement, ElementList
 from ..inline.code import Code
 from ..inline.emphasis import Bold, BoldItalic, Italic
 
-TableElements = list[str, Link, Code, Bold, Italic, BoldItalic]
+TableElement = str, Link, Code, Bold, Italic, BoldItalic
 
 
 class Alignment(Enum):
@@ -16,8 +16,8 @@ class Alignment(Enum):
 
 class Table(BlockElement):
     def __init__(self,
-                 header: TableElements,
-                 content: list[TableElements],
+                 header: list[TableElement],
+                 content: list[list[TableElement]],
                  alignment: list[Alignment] = []) -> None:
         super().__init__()
         self.headers = ElementList(tuple(header))
