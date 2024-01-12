@@ -43,7 +43,7 @@ class List(BlockElement, metaclass=ABCMeta):
 
 
 class OrderedList(List):
-    def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | Self]], start_index: int = 0) -> None:
+    def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | List]], start_index: int = 1) -> None:
         super().__init__(*items)
         self.start: int = start_index
 
