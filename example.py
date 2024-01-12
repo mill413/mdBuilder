@@ -2,7 +2,7 @@ from mdElement import (Bold, Italic, BoldItalic, Code, Strikethrough,
                        Heading, Blockquote, Paragraph, HorizontalRule,
                        FencedCodeBlock, Table, Alignment, Link, Image,
                        OrderedList, UnorderedList)
-from mdWriter.MdWriter import MdWriter
+from mdBuilder.MdBuilder import MdBuilder
 
 
 examples = (
@@ -63,5 +63,5 @@ examples = (
 for e in examples:
     print(e)
 
-mw = MdWriter(*examples)
+mw = MdBuilder(*examples)
 mw.write_to_file("./example.md")

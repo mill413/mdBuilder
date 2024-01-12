@@ -2,7 +2,7 @@ from mdElement import MdElement, InlineElement, Paragraph
 from pathlib import Path
 
 
-class MdWriter:
+class MdBuilder:
     def __init__(self,
                  *content: tuple[MdElement | str]) -> None:
         self.content: list[MdElement | str] = [
