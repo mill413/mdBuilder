@@ -1,7 +1,17 @@
-from ..element import BlockElement, InlineElement, ElementList
+from ..element import BlockElement, ElementList, InlineElement
 
 
 class Paragraph(BlockElement):
+    """The Paragraph Element
+    
+    Paragraph("Text1", "Text2") corresponds to 
+    ```markdown
+    Text1
+
+    Text2
+    ```
+    in markdown
+    """
     def __init__(self, *content: tuple[InlineElement, str]) -> None:
         super().__init__()
 
