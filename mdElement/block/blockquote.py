@@ -1,7 +1,13 @@
-from ..element import MdElement, BlockElement, ElementList
+from ..element import BlockElement, ElementList, MdElement
 
 
 class Blockquote(BlockElement):
+    """The Blockquote element
+
+    Attributes:
+        content: 
+    """
+
     def __init__(self, *quote: tuple[MdElement, str]) -> None:
         super().__init__()
 
