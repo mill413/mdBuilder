@@ -4,11 +4,33 @@ from ..element import BlockElement, ElementList, MdElement
 class Blockquote(BlockElement):
     """The Blockquote element
 
+    `Blockquote("Single line")` corresponds to `> Single line` in markdown
+
+    `Blockquote("Multiple", "lines")` corresponds to 
+
+    ```
+    > Multiple
+    >
+    > lines
+    ```
+
+    in markdown
+
+    `Blockquote("This is", Blockquote("Nested Blockquote"))` corresponds to
+
+    ```
+    > This is
+    >
+    > >Nested Blockquote
+    ```
+
+    in markdown
+
     Attributes:
-        content: 
+        content: the elements in quote block
     """
 
-    def __init__(self, *quote: tuple[MdElement, str]) -> None:
+    def __init__(self, *quote: tuple[MdElement | str]) -> None:
         super().__init__()
 
         self.content = ElementList(quote)
