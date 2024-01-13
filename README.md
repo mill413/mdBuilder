@@ -51,7 +51,7 @@ pip install mdBuilder
 
 ## Reference
 
-The output markdown string from this library refers to <https://www.markdownguide.org/>
+The markdown string format refers to <https://www.markdownguide.org/>
 
 ## LICENSE
 
