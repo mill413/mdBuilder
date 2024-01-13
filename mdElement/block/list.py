@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
-from typing import Self, Sequence
+from typing import Self
 
-from ..element import BlockElement, Text, ElementList, MdElement
+from ..element import BlockElement, Text
 from .blockquote import Blockquote
 from .image import Image
 from .paragraph import Paragraph
@@ -83,3 +83,7 @@ class UnorderedList(List):
                     md_str_list.append("\n".join(item_str_list))
 
         return "\n".join(md_str_list)
+
+
+class CheckBox(List):
+    ...
