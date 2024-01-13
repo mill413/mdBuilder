@@ -13,7 +13,7 @@ class List(BlockElement, metaclass=ABCMeta):
     """The List element
 
     Attributes:
-        items: 
+        items: a list of the items of the List
     """
 
     def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | Self]]) -> None:
@@ -52,8 +52,8 @@ class OrderedList(List):
     """The Ordered List element
 
     Attributes:
-        items: 
-        start: 
+        items: a list of the items of the Ordered List
+        start: the start index.Recommend for default 1
     """
 
     def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | List]], start_index: int = 1) -> None:
@@ -83,7 +83,7 @@ class UnorderedList(List):
     """The Unordered List element
 
     Attributes:
-        items: 
+        items: a list of the items of the Unordered List
     """
 
     def _to_md_str_(self, bias: str = "") -> str:
