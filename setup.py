@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='mdBuilder',
-    version='0.0.1',
+    version='1.0.0',
     packages=setuptools.find_packages(),
     url='https://github.com/mill413/mdWriter',
     license='MIT',
