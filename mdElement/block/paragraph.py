@@ -3,8 +3,9 @@ from ..element import BlockElement, ElementList, InlineElement
 
 class Paragraph(BlockElement):
     """The Paragraph Element
-    
-    Paragraph("Text1", "Text2") corresponds to 
+
+    `Paragraph("Text1", "Text2")` corresponds to 
+
     ```markdown
     Text1
 
@@ -12,6 +13,7 @@ class Paragraph(BlockElement):
     ```
     in markdown
     """
+
     def __init__(self, *content: tuple[InlineElement, str]) -> None:
         super().__init__()
 

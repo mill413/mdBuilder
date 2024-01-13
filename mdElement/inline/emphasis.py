@@ -4,7 +4,7 @@ from ..element import InlineElement
 class Italic(InlineElement):
     """The Italic Element
 
-    Italic("Text") corresponds to `*Text*` in markdown
+    `Italic("Text")` corresponds to `*Text*` in markdown
     """
 
     def __init__(self, content: str) -> None:
@@ -14,7 +14,7 @@ class Italic(InlineElement):
 class Bold(InlineElement):
     """The Bold Element
 
-    Bold("Text") corresponds to `**Text**` in markdown
+    `Bold("Text")` corresponds to `**Text**` in markdown
     """
 
     def __init__(self, content: str) -> None:
@@ -24,7 +24,7 @@ class Bold(InlineElement):
 class BoldItalic(InlineElement):
     """The BoldItalic Element
 
-    BoldItalic("Text") corresponds to `***Text***` in markdown
+    `BoldItalic("Text")` corresponds to `***Text***` in markdown
     """
 
     def __init__(self, content: str) -> None:

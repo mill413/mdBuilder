@@ -23,6 +23,7 @@ class Link(BlockElement):
         text: a string of the link text or the image element's markdown string
         title: a string of the title of link, which is optional
     """
+
     def __init__(self, url: str, text_or_image: str | Bold | Italic | BoldItalic | Image = "",  title: str = "") -> None:
         super().__init__()
         self.url = url

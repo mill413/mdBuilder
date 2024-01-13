@@ -4,7 +4,7 @@ from ..element import BlockElement, ElementList, InlineElement
 class Heading(BlockElement):
     """The Heading Element
 
-    Heading(1, "Heading") corresponds to `# Heading` in markdown
+    `Heading(1, "Heading")` corresponds to `# Heading` in markdown
 
     Attributes:
         level: a integer of the heading's level, which corresponds to the number of sighs(#) in front of the text

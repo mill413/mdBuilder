@@ -91,9 +91,10 @@ class ElementList(list):
     Attributes:
         elements: a list including MdElement and other ElementList
     """
+
     def __init__(self, elements: Sequence[MdElement | str | Self]) -> None:
         """init elements with a sequence of MdElements or string or other ElementLists
-        
+
         The string element will be wrapped to Text
         """
         self.elements: list[MdElement | Self] = [
@@ -102,12 +103,12 @@ class ElementList(list):
 
     def md_str_list(self) -> list[str | list]:
         """get a list of elements' markdown string
-        
+
         Returns:
             a list of the elements' markdown string, such as:
 
             ["Element", "**Bold**"]
-            
+
             If the element is a ElementList, the md_str_list will be added in.
         """
         return [

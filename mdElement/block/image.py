@@ -4,7 +4,7 @@ from ..element import BlockElement
 class Image(BlockElement):
     """The Image Element
 
-    Image(path_or_url="path/to/image", alt_text="Image", title="title") corresponds to `![Image](path/to/image "title")` in markdown
+    `Image(path_or_url="path/to/image", alt_text="Image", title="title")` corresponds to `![Image](path/to/image "title")` in markdown
 
     Attributes:
         text: a string of alt text
