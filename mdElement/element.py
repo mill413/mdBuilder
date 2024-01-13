@@ -84,12 +84,32 @@ class Text(MdElement):
 
 
 class ElementList(list):
+    """a list of MdElement
+
+    Aiming to handle list of elements, which can be nested in another ElementList
+
+    Attributes:
+        elements: a list including MdElement and other ElementList
+    """
     def __init__(self, elements: Sequence[MdElement | str | Self]) -> None:
+        """init elements with a sequence of MdElements or string or other ElementLists
+        
+        The string element will be wrapped to Text
+        """
         self.elements: list[MdElement | Self] = [
             Text(e) if isinstance(e, str) else e
             for e in elements]
 
     def md_str_list(self) -> list[str | list]:
+        """get a list of elements' markdown string
+        
+        Returns:
+            a list of the elements' markdown string, such as:
+
+            ["Element", "**Bold**"]
+            
+            If the element is a ElementList, the md_str_list will be added in.
+        """
         return [
             e.md_str() if isinstance(e, MdElement) else e.md_str_list()
             for e in self.elements]
