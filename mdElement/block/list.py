@@ -10,6 +10,12 @@ ListItem = Text | Paragraph | Blockquote | Image | Self
 
 
 class List(BlockElement, metaclass=ABCMeta):
+    """The List element
+
+    Attributes:
+        items: 
+    """
+
     def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | Self]]) -> None:
         super().__init__()
         self.items: list[list[ListItem]] = [
@@ -43,6 +49,13 @@ class List(BlockElement, metaclass=ABCMeta):
 
 
 class OrderedList(List):
+    """The Ordered List element
+
+    Attributes:
+        items: 
+        start: 
+    """
+
     def __init__(self, *items: tuple[str | list[str | Paragraph | Blockquote | Image | List]], start_index: int = 1) -> None:
         super().__init__(*items)
         self.start: int = start_index
@@ -67,6 +80,12 @@ class OrderedList(List):
 
 
 class UnorderedList(List):
+    """The Unordered List element
+
+    Attributes:
+        items: 
+    """
+
     def _to_md_str_(self, bias: str = "") -> str:
         md_str_list = []
         for _, item_list in enumerate(self.items):
@@ -85,5 +104,5 @@ class UnorderedList(List):
         return "\n".join(md_str_list)
 
 
-class CheckBox(List):
+class TaskList(List):
     ...
