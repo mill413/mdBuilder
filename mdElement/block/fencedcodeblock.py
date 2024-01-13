@@ -2,6 +2,22 @@ from ..element import BlockElement
 
 
 class FencedCodeBlock(BlockElement):
+    """The Fenced Code Block element
+    
+    `FencedCodeBlock("print("Code")", syntax="python")` corresponds to
+    
+    ```````
+    ```python
+    print("Code")
+    ```
+    ```````
+
+    in markdown
+
+    Attributes:
+        syntax: a string of syntax name
+        code: the content in code block
+    """
     def __init__(self, code: str, syntax: str = "") -> None:
         super().__init__()
 
