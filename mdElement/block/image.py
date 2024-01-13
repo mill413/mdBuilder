@@ -1,14 +1,22 @@
-from pathlib import Path
-
 from ..element import BlockElement
 
 
 class Image(BlockElement):
-    def __init__(self, path_or_url: str | Path, alt_text: str = "", title: str = "") -> None:
+    """The Image Element
+
+    Image(path_or_url="path/to/image", alt_text="Image", title="title") corresponds to `![Image](path/to/image "title")` in markdown
+
+    Attributes:
+        text: a string of alt text
+        image: a string of the image's url or local path
+        title: a string of the title of this image, which is optional
+    """
+
+    def __init__(self, path_or_url: str, alt_text: str = "", title: str = "") -> None:
         super().__init__()
 
-        self.image = path_or_url  # TODO - handle string file path
         self.text = alt_text
+        self.image = path_or_url
         self.title = title
 
     def md_str(self) -> str:
