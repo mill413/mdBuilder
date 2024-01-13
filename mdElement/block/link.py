@@ -28,7 +28,7 @@ class Link(BlockElement):
         super().__init__()
         self.url = url
         self.text = Text(text_or_image) if isinstance(
-            text_or_image, str) else text_or_image.md_str()
+            text_or_image, str) else text_or_image
         self.title = title
 
     def md_str(self) -> str:
