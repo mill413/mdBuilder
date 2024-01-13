@@ -67,3 +67,6 @@ print("Example FencedCodeBlock")
     2. Nested Ordered List starting with 2
 
   * Nested Unordered List
+
+- [ ] task1
+- [x] task2

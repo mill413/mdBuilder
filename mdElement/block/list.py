@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import Self
+from typing import Literal, Self
 
 from ..element import BlockElement, Text
 from .blockquote import Blockquote
@@ -26,15 +26,15 @@ class List(BlockElement, metaclass=ABCMeta):
             for item in items
         ]
         for item in self.items:
-            self._check_list_(item)
+            self.__check_list(item)
 
     def md_str(self, bias: str = "") -> str:
-        return self._to_md_str_(bias)
+        return self._to_md_str(bias)
 
     def __repr__(self) -> str:
         return super().__repr__(items=self.items)
 
-    def _check_list_(self, item_list: list[ListItem]) -> bool:
+    def __check_list(self, item_list: list[ListItem]) -> bool:
         for ind, item in enumerate(item_list):
             if ind == 0:
                 assert isinstance(
@@ -44,7 +44,7 @@ class List(BlockElement, metaclass=ABCMeta):
                     item, (Text, Paragraph, Blockquote, Image, List)), "The element must be paragraph, blockquote, image or list"
 
     @abstractmethod
-    def _to_md_str_(self, bias: str = "") -> str:
+    def _to_md_str(self, bias: str = "") -> str:
         ...
 
 
@@ -60,7 +60,7 @@ class OrderedList(List):
         super().__init__(*items)
         self.start: int = start_index
 
-    def _to_md_str_(self, bias: str = "") -> str:
+    def _to_md_str(self, bias: str = "") -> str:
         md_str_list = []
         for item_ind, item_list in enumerate(self.items):
             if len(item_list) == 1:
@@ -86,7 +86,7 @@ class UnorderedList(List):
         items: a list of the items of the Unordered List
     """
 
-    def _to_md_str_(self, bias: str = "") -> str:
+    def _to_md_str(self, bias: str = "") -> str:
         md_str_list = []
         for _, item_list in enumerate(self.items):
             if len(item_list) == 1:
@@ -104,5 +104,27 @@ class UnorderedList(List):
         return "\n".join(md_str_list)
 
 
-class TaskList(List):
-    ...
+class TaskList(BlockElement):
+    """The Task List element
+
+    `TaskList("task1", ("task2", "x"))` corresponds to 
+
+    ```
+    - [ ] task1
+    - [x] task2
+    ```
+
+    in markdown.
+
+    Attributes:
+        tasks: a list of tasks
+    """
+
+    def __init__(self, *tasks: tuple[str | tuple[str, Literal["x", " "]]]) -> None:
+        self.tasks = [(item, " ") if isinstance(
+            item, str) else item for item in tasks]
+
+    def md_str(self) -> str:
+        return "\n".join([
+            f"- [{task[1]}] {task[0]}" for task in self.tasks
+        ])

@@ -1,7 +1,7 @@
 from mdElement import (Bold, Italic, BoldItalic, Code, Strikethrough,
                        Heading, Blockquote, Paragraph, HorizontalRule,
                        FencedCodeBlock, Table, Alignment, Link, Image,
-                       OrderedList, UnorderedList)
+                       OrderedList, UnorderedList,TaskList)
 from mdBuilder.MdBuilder import MdBuilder
 
 
@@ -57,6 +57,10 @@ examples = (
          OrderedList("Nested Ordered List starting with 2", start_index=2),
          UnorderedList("Nested Unordered List")
          ]
+    ),
+    TaskList(
+        "task1",
+        ("task2", "x")
     )
 )
 
