@@ -5,7 +5,7 @@ class FrontMatter(BlockElement):
     def __init__(self, data: dict) -> None:
         super().__init__()
         self.data = [
-            "{k}: {v}"
+            f"{k}: {v}"
             for k, v in data.items()
         ]
     
