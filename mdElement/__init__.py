@@ -1,6 +1,6 @@
 from .block.blockquote import Blockquote
 from .block.fencedcodeblock import FencedCodeBlock
-# from .block.frontmatter import FrontMatter
+from .block.frontmatter import FrontMatter
 from .block.heading import Heading
 from .block.horizontalrule import HorizontalRule
 from .block.image import Image
