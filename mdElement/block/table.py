@@ -12,6 +12,7 @@ class Alignment(Enum):
     LEFT = ":---"
     RIGHT = "---:"
     CENTER = ":---:"
+    DEFAULT = "---"
 
 
 class Table(BlockElement):
@@ -61,7 +62,7 @@ class Table(BlockElement):
                 row.extend(" "*(max_columns - len(row)))
         if len(self.alignments) < max_columns:
             self.alignments.extend(
-                [Alignment.LEFT for _ in range(max_columns - len(self.alignments))])
+                [Alignment.DEFAULT for _ in range(max_columns - len(self.alignments))])
 
     def __replace_pipes(self, str_list: list[str]) -> list[str]:
         return [str.replace("|", "&#124;") for str in str_list]
