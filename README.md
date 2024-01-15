@@ -18,7 +18,7 @@ pip install mdBuilder
 
 ### Basic Syntax
 
-#### Headings
+#### 1. Headings
 
 Markdown:
 
@@ -42,7 +42,7 @@ Heading(5, "Heading level 5")
 Heading(6, "Heading level 6")
 ```
 
-#### Paragraphs
+#### 2. Paragraphs
 
 Markdown:
 
@@ -59,9 +59,9 @@ Paragraph("I really like using Markdown.")
 Paragraph("I think I'll use it to format all of my documents from now on.")
 ```
 
-#### Emphasis
+#### 3. Emphasis
 
-##### Bold
+##### 3.1 Bold
 
 Markdown:
 
@@ -77,7 +77,7 @@ Paragraph("I just love ", Bold("bold text"), ".")
 Paragraph("Love", Bold("is"), "bold")
 ```
 
-##### Italic
+##### 3.2 Italic
 
 Markdown:
 
@@ -93,7 +93,7 @@ Paragraph("Italicized text is the ", Italic("cat's meow"), ".")
 Paragraph("A", Italic("cat"), "meow")
 ```
 
-##### Bold and Italic
+##### 3.3 Bold and Italic
 
 Markdown:
 
@@ -109,7 +109,7 @@ Paragraph("This text is ", BoldItalic("really important"), ".")
 Paragraph("This is really", BoldItalic("very"), "important text.")
 ```
 
-#### Blockquotes
+#### 4. Blockquotes
 
 Markdown:
 
@@ -123,7 +123,7 @@ Python:
 Blockquote("Dorothy followed her through many of the beautiful rooms in her castle.")
 ```
 
-##### Blockquotes with Multiple Paragraphs
+##### 4.1 Blockquotes with Multiple Paragraphs
 
 Markdown:
 
@@ -141,7 +141,7 @@ Blockquote(
     "The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.")
 ```
 
-##### Nested Blockquotes
+##### 4.2 Nested Blockquotes
 
 Markdown:
 
@@ -159,7 +159,7 @@ Blockquote(
     Blockquote("The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood."))
 ```
 
-##### Blockquotes with Other Elements
+##### 4.3 Blockquotes with Other Elements
 
 Markdown:
 
@@ -185,9 +185,9 @@ Blockquote(
 )
 ```
 
-#### Lists
+#### 5. Lists
 
-##### Ordered Lists
+##### 5.1 Ordered Lists
 
 Markdown:
 
@@ -226,7 +226,7 @@ OrderedList(
 )
 ```
 
-##### Unordered Lists
+##### 5.2 Unordered Lists
 
 Markdown:
 
@@ -265,9 +265,9 @@ UnorderedList(
 )
 ```
 
-##### Adding Elements in Lists
+##### 5.3 Adding Elements in Lists
 
-###### Paragraphs
+###### 5.3.1 Paragraphs
 
 Markdown:
 
@@ -291,7 +291,7 @@ UnorderedList(
 )
 ```
 
-###### Blockquotes
+###### 5.3.2 Blockquotes
 
 Markdown:
 
@@ -315,7 +315,7 @@ UnorderedList(
 )
 ```
 
-###### Images
+###### 5.3.3 Images
 
 Markdown:
 
@@ -339,7 +339,7 @@ OrderedList(
 )
 ```
 
-###### Lists
+###### 5.3.4 Lists
 
 Markdown:
 
@@ -367,7 +367,7 @@ OrderedList(
 )
 ```
 
-#### Code
+#### 6. Code
 
 Markdown:
 
@@ -381,7 +381,7 @@ Python:
 Paragraph("At the command prompt, type ", Code("nano"), ".")
 ```
 
-#### Horizontal Rules
+#### 7. Horizontal Rules
 
 Markdown:
 
@@ -395,7 +395,7 @@ Python:
 HorizontalRule()
 ```
 
-#### Links
+#### 8. Links
 
 Markdown:
 
@@ -411,7 +411,7 @@ Paragraph("My favorite search engine is ",
           ".")
 ```
 
-##### Adding Titles
+##### 8.1 Adding Titles
 
 Markdown:
 
@@ -429,7 +429,7 @@ Paragraph("My favorite search engine is ",
           ".")
 ```
 
-##### URLs and Email Addresses
+##### 8.2 URLs and Email Addresses
 
 Markdown:
 
@@ -445,7 +445,7 @@ Link(url="https://www.markdownguide.org")
 Link(url="fake@example.com")
 ```
 
-##### Formatting Links
+##### 8.3 Formatting Links
 
 Markdown:
 
@@ -469,7 +469,7 @@ Paragraph("See the section on ",
           ".")
 ```
 
-#### Images
+#### 9. Images
 
 Markdown:
 
@@ -484,7 +484,7 @@ Python:
 Image(path_or_url="/assets/images/san-juan-mountains.jpg", alt_text="The San Juan Mountains are beautiful!", title="San Juan Mountains")
 ```
 
-##### Linking Images
+##### 9.1 Linking Images
 
 Markdown:
 
@@ -508,7 +508,7 @@ Link(
 
 ### Extened Syntax
 
-#### Tables
+#### 1. Tables
 
 Markdown:
 
@@ -531,7 +531,7 @@ Table(
 )
 ```
 
-##### Alignment
+##### 1.1 Alignment
 
 Markdown:
 
@@ -559,7 +559,7 @@ Table(
 )
 ```
 
-#### Fenced Code Blocks
+#### 2. Fenced Code Blocks
 
 Markdown:
 
@@ -585,7 +585,7 @@ FencedCodeBlock(
 )
 ```
 
-##### Syntax Highlighting
+##### 2.1 Syntax Highlighting
 
 Markdown:
 
@@ -612,7 +612,7 @@ FencedCodeBlock(
 )
 ```
 
-#### Strikethrough
+#### 3. Strikethrough
 
 Markdown:
 
@@ -628,7 +628,7 @@ Paragraph(
      " We now know that the world is round.")
 ```
 
-#### Task Lists
+#### 4. Task Lists
 
 Markdown:
 
