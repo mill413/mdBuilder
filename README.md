@@ -8,10 +8,22 @@ This library is just a **TOY PROJECT**!
 
 DON'T use it in production environment!
 
+## Requirements
+
+python >= 3.12
+
 ## Installation
 
-```python
+### From PyPI
+
+```shell
 pip install mdBuilder
+```
+
+### From AUR
+
+```shell
+pacman -S python-mdbuilder
 ```
 
 ## Usage
